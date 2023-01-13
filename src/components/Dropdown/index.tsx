@@ -1,11 +1,8 @@
-import React from "react";
+import React from 'react';
 
 // location dropdown
 const Dropdown: React.FC = () => {
-
-    return (
-        <div></div>
-    );
+  return <div></div>;
 };
 
 export default Dropdown;

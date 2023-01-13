@@ -1,11 +1,8 @@
-import React from "react";
+import React from 'react';
 
 // switch between Fahrenheit and Celsius
 const Switch: React.FC = () => {
-
-    return (
-        <div></div>
-    );
+  return <div></div>;
 };
 
 export default Switch;
