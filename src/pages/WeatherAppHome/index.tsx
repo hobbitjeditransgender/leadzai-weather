@@ -31,8 +31,11 @@ const WeatherAppHome: React.FC = () => {
           <MainWeather value={location.main.temp} isFahrenheit={isFahrenheit} />
           <Icon src={getWeatherIcon(location.weather[0].icon)} />
           <div>
-            <SunTime time={getHourMinuteTimeFormat(location.sys.sunrise)} />
-            <SunTime time={getHourMinuteTimeFormat(location.sys.sunset)} isSunrise={false} />
+            <SunTime time={getHourMinuteTimeFormat(location.sys.sunrise, location.timezone)} />
+            <SunTime
+              time={getHourMinuteTimeFormat(location.sys.sunset, location.timezone)}
+              isSunrise={false}
+            />
           </div>
         </div>
       )}

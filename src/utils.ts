@@ -1,9 +1,9 @@
 export const getWeatherIcon = (icon: string) => `http://openweathermap.org/img/wn/${icon}@4x.png`;
 
-export const getHourMinuteTimeFormat = (timestamp: number) => {
-  const date = new Date(timestamp * 1000);
+export const getHourMinuteTimeFormat = (timestamp: number, secondsTimezoneOffset: number) => {
+  const date = new Date((timestamp + secondsTimezoneOffset) * 1000);
 
-  const time = date.toLocaleTimeString();
+  const time = date.toTimeString();
 
   return time.substring(0, 5);
 };
