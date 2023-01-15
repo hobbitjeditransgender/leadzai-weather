@@ -9,7 +9,7 @@ const SunTime: React.FC<Props> = ({ time, isSunrise = true }) => {
   return (
     <div>
       <span>
-        {isSunrise ? 'Sunrise' : 'Sunset'} {time}
+        {isSunrise ? 'Sunrise' : 'Sunset'}: {time}
       </span>
     </div>
   );

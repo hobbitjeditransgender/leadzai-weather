@@ -1,14 +1,15 @@
 import React from 'react';
 import { fromCelsiusToFahrenheit } from '../../utils';
+import './index.scss';
 
 interface MainWeatherProps {
   value: number;
   isFahrenheit?: boolean;
 }
 
-const MainWeather: React.FC<MainWeatherProps> = ({ value, isFahrenheit = false }) => {
+const Temperature: React.FC<MainWeatherProps> = ({ value, isFahrenheit = false }) => {
   return (
-    <div>
+    <div className="temperature">
       <span>
         {isFahrenheit ? Math.floor(fromCelsiusToFahrenheit(value)) : Math.floor(value)}{' '}
         {isFahrenheit ? '°F' : '°C'}
@@ -17,4 +18,4 @@ const MainWeather: React.FC<MainWeatherProps> = ({ value, isFahrenheit = false }
   );
 };
 
-export default MainWeather;
+export default Temperature;

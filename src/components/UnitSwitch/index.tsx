@@ -15,7 +15,7 @@ const UnitSwitch: React.FC<Props> = ({ leftOption, rightOption, onChange }) => {
       <span>{leftOption}</span>
       <label className="switch">
         <input type="checkbox" defaultValue={'false'} onChange={handleChange} />
-        <span className="slider round"></span>
+        <span className="slider"></span>
       </label>
       <span>{rightOption}</span>
     </div>

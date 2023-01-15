@@ -1,4 +1,7 @@
 .header {
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,6 +9,5 @@
   background-color: #455a64;
   span {
     font-size: 25px;
-    color: white;
   }
 }

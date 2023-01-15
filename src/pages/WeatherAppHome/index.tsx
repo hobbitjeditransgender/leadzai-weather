@@ -1,12 +1,13 @@
 import { getWeatherByCityName } from '../../api';
 import Dropdown from '../../components/Dropdown';
 import Header from '../../components/Header';
-import WeatherIcon from '../../components/Icon';
-import MainWeather from '../../components/MainWeather';
+import WeatherIcon from '../../components/WeatherIcon';
+import Temperature from '../../components/Temperature';
 import SunTime from '../../components/SunTime';
-import UnitSwitch from '../../components/Switch';
+import UnitSwitch from '../../components/UnitSwitch';
 import useWeather from '../../hooks/useWeather';
 import { getWeatherIcon, getHourMinuteTimeFormat } from '../../utils';
+import './index.scss';
 
 const WeatherAppHome: React.FC = () => {
   const { isFahrenheit, location, locationList, setIsFahrenheit, setLocation } = useWeather();
@@ -20,17 +21,20 @@ const WeatherAppHome: React.FC = () => {
   const handleSwitchChange = (e: boolean) => setIsFahrenheit(e);
 
   return (
-    <div>
+    <div className="weather-app-home-wrapper">
       <Header />
-      <div>
-        <Dropdown options={locationList} onChange={changeSelectedLocation} />
-        <UnitSwitch leftOption="C" rightOption="F" onChange={handleSwitchChange} />
+
+      <div className="location-unit-section">
+        <div className="location-unit-wrapper">
+          <Dropdown options={locationList} onChange={changeSelectedLocation} />
+          <UnitSwitch leftOption="°C" rightOption="°F" onChange={handleSwitchChange} />
+        </div>
       </div>
       {location && (
-        <div>
-          <MainWeather value={location.main.temp} isFahrenheit={isFahrenheit} />
+        <div className="weather-section">
+          <Temperature value={location.main.temp} isFahrenheit={isFahrenheit} />
           <WeatherIcon src={getWeatherIcon(location.weather[0].icon)} />
-          <div>
+          <div className="sun-section">
             <SunTime time={getHourMinuteTimeFormat(location.sys.sunrise, location.timezone)} />
             <SunTime
               time={getHourMinuteTimeFormat(location.sys.sunset, location.timezone)}
