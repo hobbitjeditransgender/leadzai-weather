@@ -1,16 +1,18 @@
 import React from 'react';
+import { fromCelsiusToFahrenheit } from '../../utils';
 
-interface Props {
-  value: string;
-  isCelsius?: boolean;
+interface MainWeatherProps {
+  value: number;
+  isFahrenheit?: boolean;
 }
 
 // weather main text
-const MainWeather: React.FC<Props> = ({ value, isCelsius = true }) => {
+const MainWeather: React.FC<MainWeatherProps> = ({ value, isFahrenheit = false }) => {
   return (
     <div>
       <span>
-        {value} {isCelsius ? 'Celsius' : 'Fahrenheit'}
+        {isFahrenheit ? Math.floor(fromCelsiusToFahrenheit(value)) : Math.floor(value)}{' '}
+        {isFahrenheit ? '°F' : '°C'}
       </span>
     </div>
   );
