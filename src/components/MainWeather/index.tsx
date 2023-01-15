@@ -6,7 +6,6 @@ interface MainWeatherProps {
   isFahrenheit?: boolean;
 }
 
-// weather main text
 const MainWeather: React.FC<MainWeatherProps> = ({ value, isFahrenheit = false }) => {
   return (
     <div>

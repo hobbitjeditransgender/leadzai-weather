@@ -1,10 +1,10 @@
 import { getWeatherByCityName } from '../../api';
 import Dropdown from '../../components/Dropdown';
 import Header from '../../components/Header';
-import Icon from '../../components/Icon';
+import WeatherIcon from '../../components/Icon';
 import MainWeather from '../../components/MainWeather';
 import SunTime from '../../components/SunTime';
-import Switch from '../../components/Switch';
+import UnitSwitch from '../../components/Switch';
 import useWeather from '../../hooks/useWeather';
 import { getWeatherIcon, getHourMinuteTimeFormat } from '../../utils';
 
@@ -24,12 +24,12 @@ const WeatherAppHome: React.FC = () => {
       <Header />
       <div>
         <Dropdown options={locationList} onChange={changeSelectedLocation} />
-        <Switch leftOption="C" rightOption="F" onChange={handleSwitchChange} />
+        <UnitSwitch leftOption="C" rightOption="F" onChange={handleSwitchChange} />
       </div>
       {location && (
         <div>
           <MainWeather value={location.main.temp} isFahrenheit={isFahrenheit} />
-          <Icon src={getWeatherIcon(location.weather[0].icon)} />
+          <WeatherIcon src={getWeatherIcon(location.weather[0].icon)} />
           <div>
             <SunTime time={getHourMinuteTimeFormat(location.sys.sunrise, location.timezone)} />
             <SunTime

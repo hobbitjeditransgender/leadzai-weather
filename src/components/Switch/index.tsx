@@ -7,8 +7,7 @@ interface Props {
   onChange: (isChecked: boolean) => void;
 }
 
-// switch between Fahrenheit and Celsius
-const Switch: React.FC<Props> = ({ leftOption, rightOption, onChange }) => {
+const UnitSwitch: React.FC<Props> = ({ leftOption, rightOption, onChange }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked);
 
   return (
@@ -23,4 +22,4 @@ const Switch: React.FC<Props> = ({ leftOption, rightOption, onChange }) => {
   );
 };
 
-export default Switch;
+export default UnitSwitch;

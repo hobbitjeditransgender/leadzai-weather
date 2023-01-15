@@ -5,7 +5,6 @@ interface Props {
   isSunrise?: boolean;
 }
 
-// weather main text
 const SunTime: React.FC<Props> = ({ time, isSunrise = true }) => {
   return (
     <div>

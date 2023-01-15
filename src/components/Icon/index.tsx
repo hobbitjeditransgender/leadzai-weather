@@ -4,9 +4,8 @@ interface Props {
   src: string;
 }
 
-// weather icon
-const Icon: React.FC<Props> = ({ src }) => {
+const WeatherIcon: React.FC<Props> = ({ src }) => {
   return <img src={src} alt="weather icon" />;
 };
 
-export default Icon;
+export default WeatherIcon;
