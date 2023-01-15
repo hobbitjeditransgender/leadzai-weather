@@ -1,25 +1,41 @@
+import { getWeatherByCityName } from '../../api';
 import Dropdown from '../../components/Dropdown';
 import Header from '../../components/Header';
 import Icon from '../../components/Icon';
 import MainWeather from '../../components/MainWeather';
 import SunTime from '../../components/SunTime';
 import Switch from '../../components/Switch';
+import useWeather from '../../hooks/useWeather';
+import { getWeatherIcon, getHourMinuteTimeFormat } from '../../utils';
 
-// main app compoenent
 const WeatherAppHome: React.FC = () => {
+  const { isFahrenheit, location, locationList, setIsFahrenheit, setLocation } = useWeather();
+
+  const changeSelectedLocation = async (newLocation: string) => {
+    const loc = await getWeatherByCityName(newLocation);
+
+    setLocation(loc);
+  };
+
+  const handleSwitchChange = (e: boolean) => setIsFahrenheit(e);
+
   return (
     <div>
       <Header />
       <div>
-        <Dropdown />
-        <Switch />
+        <Dropdown options={locationList} onChange={changeSelectedLocation} />
+        <Switch leftOption="C" rightOption="F" onChange={handleSwitchChange} />
       </div>
-      <MainWeather value={'15 C'} />
-      <Icon src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6mxoRhhYJPFewGRQ0hEsXREdonkJwIW9ohQdNWes&s" />
-      <div>
-        <SunTime time={'06:00'} />
-        <SunTime time={'17:00'} />
-      </div>
+      {location && (
+        <div>
+          <MainWeather value={location.main.temp} isFahrenheit={isFahrenheit} />
+          <Icon src={getWeatherIcon(location.weather[0].icon)} />
+          <div>
+            <SunTime time={getHourMinuteTimeFormat(location.sys.sunrise)} />
+            <SunTime time={getHourMinuteTimeFormat(location.sys.sunset)} isSunrise={false} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
