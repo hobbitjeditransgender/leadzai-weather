@@ -1,6 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import Dropdown from '.';
 import '@testing-library/jest-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
+
+import Dropdown from '.';
 
 const LOCATION_OPTIONS = ['Lisbon', 'Rio de Janeiro', 'New York', 'Sydney', 'Tokyo'];
 

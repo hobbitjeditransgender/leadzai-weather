@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { getWeatherByCityName } from '../api';
 import { LocationWeather } from '../types/api';
 

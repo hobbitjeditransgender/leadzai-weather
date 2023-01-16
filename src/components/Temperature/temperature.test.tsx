@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
-import Temperature from '.';
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+
+import Temperature from '.';
 
 test('render celsius temperature', () => {
   render(<Temperature value={15} isFahrenheit={false} />);

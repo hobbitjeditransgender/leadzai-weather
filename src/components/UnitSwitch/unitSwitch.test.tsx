@@ -1,6 +1,7 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import Switch from '.';
 import '@testing-library/jest-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
+
+import Switch from '.';
 
 test('checks switch default value off', () => {
   render(<Switch leftOption="C" rightOption="F" onChange={() => null} />);

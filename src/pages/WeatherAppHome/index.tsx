@@ -1,10 +1,10 @@
 import { getWeatherByCityName } from '../../api';
 import Dropdown from '../../components/Dropdown';
 import Header from '../../components/Header';
-import WeatherIcon from '../../components/WeatherIcon';
-import Temperature from '../../components/Temperature';
 import SunTime from '../../components/SunTime';
+import Temperature from '../../components/Temperature';
 import UnitSwitch from '../../components/UnitSwitch';
+import WeatherIcon from '../../components/WeatherIcon';
 import useWeather from '../../hooks/useWeather';
 import { getWeatherIcon, getHourMinuteTimeFormat } from '../../utils';
 import './index.scss';

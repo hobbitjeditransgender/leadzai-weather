@@ -1,6 +1,7 @@
-import { render, screen } from '@testing-library/react';
-import WeatherIcon from '.';
 import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+
+import WeatherIcon from '.';
 
 const testSrc =
   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6mxoRhhYJPFewGRQ0hEsXREdonkJwIW9ohQdNWes&s';
