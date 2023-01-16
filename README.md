@@ -14,7 +14,7 @@
 
 # 🔥 Setup
 
-- Create .env file in the root of the project with an Api Id variable called REACT_APP_API_KEY. Add your OpenWeatherAPI key to the value
+- Create .env file in the root of the project with an Api Id variable called REACT_APP_API_KEY. Add your OpenWeatherAPI key to it.
 
 ```
 REACT_APP_API_KEY=""
