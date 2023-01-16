@@ -30,3 +30,11 @@ $ npm start
 ```
 
 It will run at http://localhost:3000
+
+### 🧪 How to test
+
+```bash
+$ npm test
+```
+
+Runs all test files with jest
