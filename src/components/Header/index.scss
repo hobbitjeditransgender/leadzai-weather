@@ -1,3 +1,5 @@
+@use '../../utils/variables.scss' as v;
+
 .header {
   top: 0;
   left: 0;
@@ -6,7 +8,7 @@
   justify-content: center;
   align-items: center;
   height: 60px;
-  background-color: #455a64;
+  background-color: v.$gray-secondary;
   span {
     font-size: 25px;
   }
