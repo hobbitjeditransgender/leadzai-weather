@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { fromCelsiusToFahrenheit } from '../../utils';
+import { formatTemperature } from '../../utils';
 import './index.scss';
 
 interface MainWeatherProps {
@@ -11,10 +11,7 @@ interface MainWeatherProps {
 const Temperature: React.FC<MainWeatherProps> = ({ value, isFahrenheit = false }) => {
   return (
     <div className="temperature">
-      <span>
-        {isFahrenheit ? Math.floor(fromCelsiusToFahrenheit(value)) : Math.floor(value)}{' '}
-        {isFahrenheit ? '°F' : '°C'}
-      </span>
+      <span>{formatTemperature(value, isFahrenheit)}</span>
     </div>
   );
 };

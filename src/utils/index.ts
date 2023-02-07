@@ -13,3 +13,12 @@ export const fromCelsiusToFahrenheit = (celsiusTemp: number) => {
 
   return fahrenheitTemp;
 };
+
+export const formatTemperature = (value: number, isFahrenheit: boolean) => {
+  const formattedTemperature = new Intl.NumberFormat('en', {
+    style: 'unit',
+    unit: !isFahrenheit ? 'celsius' : 'fahrenheit'
+  }).format(isFahrenheit ? Math.floor(fromCelsiusToFahrenheit(value)) : Math.floor(value));
+
+  return formattedTemperature;
+};
