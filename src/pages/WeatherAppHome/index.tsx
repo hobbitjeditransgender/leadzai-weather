@@ -1,5 +1,6 @@
 import Dropdown from '../../components/Dropdown';
 import Header from '../../components/Header';
+import LoadingSpinner from '../../components/Spinner';
 import SunTime from '../../components/SunTime';
 import Temperature from '../../components/Temperature';
 import UnitSwitch from '../../components/UnitSwitch';
@@ -9,8 +10,14 @@ import { getWeatherIcon, getHourMinuteTimeFormat } from '../../utils';
 import './index.scss';
 
 const WeatherAppHome: React.FC = () => {
-  const { isFahrenheit, location, LOCATION_OPTIONS, setIsFahrenheit, changeSelectedLocation } =
-    useWeather();
+  const {
+    isFahrenheit,
+    location,
+    LOCATION_OPTIONS,
+    setIsFahrenheit,
+    changeSelectedLocation,
+    isLoading
+  } = useWeather();
 
   const handleSwitchChange = (e: boolean) => setIsFahrenheit(e);
 
@@ -24,19 +31,23 @@ const WeatherAppHome: React.FC = () => {
           <UnitSwitch leftOption="°C" rightOption="°F" onChange={handleSwitchChange} />
         </div>
       </div>
-      {location && (
-        <div className="weather-section">
-          <Temperature value={location.main.temp} isFahrenheit={isFahrenheit} />
-          <WeatherIcon src={getWeatherIcon(location.weather[0].icon)} />
-          <div className="sun-section">
-            <SunTime time={getHourMinuteTimeFormat(location.sys.sunrise, location.timezone)} />
-            <SunTime
-              time={getHourMinuteTimeFormat(location.sys.sunset, location.timezone)}
-              isSunrise={false}
-            />
+      <div className="weather-section">
+        {!isLoading && location ? (
+          <div>
+            <Temperature value={location.main.temp} isFahrenheit={isFahrenheit} />
+            <WeatherIcon src={getWeatherIcon(location.weather[0].icon)} />
+            <div className="sun-section">
+              <SunTime time={getHourMinuteTimeFormat(location.sys.sunrise, location.timezone)} />
+              <SunTime
+                time={getHourMinuteTimeFormat(location.sys.sunset, location.timezone)}
+                isSunrise={false}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        ) : (
+          <LoadingSpinner />
+        )}
+      </div>
     </div>
   );
 };
