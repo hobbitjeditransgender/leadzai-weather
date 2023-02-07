@@ -8,7 +8,6 @@ const LOCATION_OPTIONS = ['Lisbon', 'Rio de Janeiro', 'New York', 'Sydney', 'Tok
 const useWeather = () => {
   const [location, setLocation] = useState<LocationWeather>();
   const [isFahrenheit, setIsFahrenheit] = useState(false);
-  const [locationList, setLocationList] = useState<Array<string>>(LOCATION_OPTIONS);
 
   useEffect(() => {
     (async () => {
@@ -18,7 +17,7 @@ const useWeather = () => {
     })();
   }, []);
 
-  return { location, isFahrenheit, locationList, setIsFahrenheit, setLocationList, setLocation };
+  return { location, isFahrenheit, LOCATION_OPTIONS, setIsFahrenheit, setLocation };
 };
 
 export default useWeather;

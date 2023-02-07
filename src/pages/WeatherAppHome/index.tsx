@@ -10,7 +10,7 @@ import { getWeatherIcon, getHourMinuteTimeFormat } from '../../utils';
 import './index.scss';
 
 const WeatherAppHome: React.FC = () => {
-  const { isFahrenheit, location, locationList, setIsFahrenheit, setLocation } = useWeather();
+  const { isFahrenheit, location, LOCATION_OPTIONS, setIsFahrenheit, setLocation } = useWeather();
 
   const changeSelectedLocation = async (newLocation: string) => {
     const loc = await getWeatherByCityName(newLocation);
@@ -26,7 +26,7 @@ const WeatherAppHome: React.FC = () => {
 
       <div className="location-unit-section">
         <div className="location-unit-wrapper">
-          <Dropdown options={locationList} onChange={changeSelectedLocation} />
+          <Dropdown options={LOCATION_OPTIONS} onChange={changeSelectedLocation} />
           <UnitSwitch leftOption="°C" rightOption="°F" onChange={handleSwitchChange} />
         </div>
       </div>
