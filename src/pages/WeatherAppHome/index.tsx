@@ -1,4 +1,3 @@
-import { getWeatherByCityName } from '../../api';
 import Dropdown from '../../components/Dropdown';
 import Header from '../../components/Header';
 import SunTime from '../../components/SunTime';
@@ -10,13 +9,8 @@ import { getWeatherIcon, getHourMinuteTimeFormat } from '../../utils';
 import './index.scss';
 
 const WeatherAppHome: React.FC = () => {
-  const { isFahrenheit, location, LOCATION_OPTIONS, setIsFahrenheit, setLocation } = useWeather();
-
-  const changeSelectedLocation = async (newLocation: string) => {
-    const loc = await getWeatherByCityName(newLocation);
-
-    setLocation(loc);
-  };
+  const { isFahrenheit, location, LOCATION_OPTIONS, setIsFahrenheit, changeSelectedLocation } =
+    useWeather();
 
   const handleSwitchChange = (e: boolean) => setIsFahrenheit(e);
 

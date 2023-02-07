@@ -17,7 +17,13 @@ const useWeather = () => {
     })();
   }, []);
 
-  return { location, isFahrenheit, LOCATION_OPTIONS, setIsFahrenheit, setLocation };
+  const changeSelectedLocation = async (newLocation: string) => {
+    const loc = await getWeatherByCityName(newLocation);
+
+    setLocation(loc);
+  };
+
+  return { location, isFahrenheit, LOCATION_OPTIONS, setIsFahrenheit, changeSelectedLocation };
 };
 
 export default useWeather;
