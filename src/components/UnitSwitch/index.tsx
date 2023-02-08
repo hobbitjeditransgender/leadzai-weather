@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import './index.scss';
+import { Input } from './UnitSwitchComponents/Input';
+import { Label } from './UnitSwitchComponents/Label';
+import { Switch } from './UnitSwitchComponents/Switch';
+import { SwitchWrapper } from './UnitSwitchComponents/SwitchWrapper';
 
 interface Props {
   leftOption: string;
@@ -9,17 +12,21 @@ interface Props {
 }
 
 const UnitSwitch: React.FC<Props> = ({ leftOption, rightOption, onChange }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.checked);
+  const [checked, setChecked] = useState(false);
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setChecked(e.target.checked);
+    onChange(e.target.checked);
+  };
 
   return (
-    <div className="switch-wrapper">
+    <SwitchWrapper>
       <span>{leftOption}</span>
-      <label className="switch">
-        <input type="checkbox" defaultValue={'false'} onChange={handleChange} />
-        <span className="slider"></span>
-      </label>
+      <Label>
+        <Input checked={checked} type="checkbox" onChange={handleChange} />
+        <Switch />
+      </Label>
       <span>{rightOption}</span>
-    </div>
+    </SwitchWrapper>
   );
 };
 

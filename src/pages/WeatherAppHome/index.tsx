@@ -1,3 +1,5 @@
+import React from 'react';
+
 import Dropdown from '../../components/Dropdown';
 import Header from '../../components/Header';
 import LoadingSpinner from '../../components/Spinner';
@@ -7,7 +9,11 @@ import UnitSwitch from '../../components/UnitSwitch';
 import WeatherIcon from '../../components/WeatherIcon';
 import useWeather from '../../hooks/useWeather';
 import { getWeatherIcon, getHourMinuteTimeFormat } from '../../utils';
-import './index.scss';
+import { LocationUnitSection } from './WeatherAppHomeComponents/LocationUnitSection';
+import { LocationUnitWrapper } from './WeatherAppHomeComponents/LocationUnitWrapper';
+import { SunSection } from './WeatherAppHomeComponents/SunSection';
+import { WeatherAppHomeWrapper } from './WeatherAppHomeComponents/WeatherAppHomeWrapper';
+import { WeatherSection } from './WeatherAppHomeComponents/WeatherSection';
 
 const WeatherAppHome: React.FC = () => {
   const {
@@ -22,33 +28,32 @@ const WeatherAppHome: React.FC = () => {
   const handleSwitchChange = (e: boolean) => setIsFahrenheit(e);
 
   return (
-    <div className="weather-app-home-wrapper">
+    <WeatherAppHomeWrapper>
       <Header />
-
-      <div className="location-unit-section">
-        <div className="location-unit-wrapper">
+      <LocationUnitSection>
+        <LocationUnitWrapper>
           <Dropdown options={LOCATION_OPTIONS} onChange={changeSelectedLocation} />
           <UnitSwitch leftOption="°C" rightOption="°F" onChange={handleSwitchChange} />
-        </div>
-      </div>
-      <div className="weather-section">
+        </LocationUnitWrapper>
+      </LocationUnitSection>
+      <WeatherSection>
         {!isLoading && location ? (
           <div>
             <Temperature value={location.main.temp} isFahrenheit={isFahrenheit} />
             <WeatherIcon src={getWeatherIcon(location.weather[0].icon)} />
-            <div className="sun-section">
+            <SunSection>
               <SunTime time={getHourMinuteTimeFormat(location.sys.sunrise, location.timezone)} />
               <SunTime
                 time={getHourMinuteTimeFormat(location.sys.sunset, location.timezone)}
                 isSunrise={false}
               />
-            </div>
+            </SunSection>
           </div>
         ) : (
           <LoadingSpinner />
         )}
-      </div>
-    </div>
+      </WeatherSection>
+    </WeatherAppHomeWrapper>
   );
 };
 
