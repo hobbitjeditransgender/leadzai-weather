@@ -1,18 +1,24 @@
 import React from 'react';
 
+import styled from 'styled-components';
+
 import { formatTemperature } from '../../utils';
-import './index.scss';
 
 interface MainWeatherProps {
   value: number;
   isFahrenheit?: boolean;
 }
 
+const TemperatureStyles = styled.div`
+  font-size: 86px;
+  font-weight: bold;
+`;
+
 const Temperature: React.FC<MainWeatherProps> = ({ value, isFahrenheit = false }) => {
   return (
-    <div className="temperature">
+    <TemperatureStyles>
       <span>{formatTemperature(value, isFahrenheit)}</span>
-    </div>
+    </TemperatureStyles>
   );
 };
 
