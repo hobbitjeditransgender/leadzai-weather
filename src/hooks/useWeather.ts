@@ -11,21 +11,31 @@ const useWeather = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    (async () => {
+    const fetchData = async () => {
       setIsLoading(true);
-      const loc = await getWeatherByCityName(LOCATION_OPTIONS[0]);
 
-      setLocation(loc);
+      try {
+        const loc = await getWeatherByCityName(LOCATION_OPTIONS[0]);
+        setLocation(loc);
+      } catch (error) {
+        throw Error('Could not fetch location');
+      }
 
       setIsLoading(false);
-    })();
+    };
+
+    fetchData();
   }, []);
 
   const changeSelectedLocation = async (newLocation: string) => {
     setIsLoading(true);
-    const loc = await getWeatherByCityName(newLocation);
 
-    setLocation(loc);
+    try {
+      const loc = await getWeatherByCityName(newLocation);
+      setLocation(loc);
+    } catch (error) {
+      throw Error('Could not fetch location');
+    }
 
     setIsLoading(false);
   };
