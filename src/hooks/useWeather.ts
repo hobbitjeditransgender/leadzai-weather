@@ -13,19 +13,27 @@ const useWeather = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    changeSelectedLocation(LOCATION_OPTIONS[0]);
+    let ignore = false;
+
+    changeSelectedLocation(LOCATION_OPTIONS[0], ignore);
+
+    return () => {
+      ignore = true;
+    };
   }, []);
 
-  const changeSelectedLocation = async (newLocation: string) => {
+  const changeSelectedLocation = async (newLocation: string, ignore = false) => {
     setIsError(false);
     setIsLoading(true);
 
     const chachedLocation = getStorageLocation(newLocation);
 
     if (chachedLocation) {
-      const loc = JSON.parse(chachedLocation);
-      setIsLoading(false);
-      setLocation(loc);
+      if (!ignore) {
+        const loc = JSON.parse(chachedLocation);
+        setIsLoading(false);
+        setLocation(loc);
+      }
       return;
     }
     try {
@@ -36,9 +44,11 @@ const useWeather = () => {
         return;
       }
 
-      setStorageLocationWithExpiry((loc as LocationWeather).name, JSON.stringify(loc), 1000000);
+      if (!ignore) {
+        setStorageLocationWithExpiry((loc as LocationWeather).name, JSON.stringify(loc), 1000000);
 
-      setLocation(loc as LocationWeather);
+        setLocation(loc as LocationWeather);
+      }
     } catch (error) {
       setIsLoading(false);
       throw new Error('Could not fetch location');
