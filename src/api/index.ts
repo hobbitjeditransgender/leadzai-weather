@@ -7,14 +7,13 @@ const apiConfig = {
   apiId: process.env.REACT_APP_API_KEY
 };
 
-export const getWeatherByCityName = async (name: string): Promise<LocationWeather> => {
+export const getWeatherByCityName = async (name: string): Promise<LocationWeather | boolean> => {
   const response = await fetch(
     `${apiConfig.baseUrl}/weather?q=${name}${apiConfig.params}&appid=${apiConfig.apiId}`
   );
 
-  if (response.status !== 200) {
-    // TODO: handle response error
+  if (response.status !== 200 || !response.ok) {
+    return false;
   }
-
   return response.json();
 };

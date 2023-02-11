@@ -24,7 +24,8 @@ const WeatherAppHome: React.FC = () => {
     LOCATION_OPTIONS,
     setIsFahrenheit,
     changeSelectedLocation,
-    isLoading
+    isLoading,
+    isError
   } = useWeather();
 
   const handleSwitchChange = (e: boolean) => setIsFahrenheit(e);
@@ -39,7 +40,9 @@ const WeatherAppHome: React.FC = () => {
         </LocationUnitWrapper>
       </LocationUnitSection>
       <WeatherSection>
-        {!isLoading && location ? (
+        {isError ? (
+          <div>Could not fetch location, please try another one</div>
+        ) : !isLoading && location ? (
           <div>
             <Temperature value={location.main.temp} isFahrenheit={isFahrenheit} />
             <WeatherIcon src={getWeatherIcon(location.weather[0].icon)} />
