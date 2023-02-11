@@ -12,7 +12,10 @@ const useWeather = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    changeSelectedLocation(LOCATION_OPTIONS[0]);
+    console.log('i fire once');
+    // eslint-disable-next-line no-debugger
+    // debugger;
+    // changeSelectedLocation(LOCATION_OPTIONS[0]);
   }, []);
 
   const changeSelectedLocation = async (newLocation: string) => {
