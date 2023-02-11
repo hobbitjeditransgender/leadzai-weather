@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { getWeatherByCityName } from '../api';
 import { LocationWeather } from '../types/api';
+import { getStorageLocation, setStorageLocationWithExpiry } from '../utils';
 
 const LOCATION_OPTIONS = ['Lisbon', 'Rio de Janeiro', 'New York', 'Sydney', 'Tokyo'];
 
@@ -12,16 +13,21 @@ const useWeather = () => {
   const [isError, setIsError] = useState(false);
 
   useEffect(() => {
-    console.log('i fire once');
-    // eslint-disable-next-line no-debugger
-    // debugger;
-    // changeSelectedLocation(LOCATION_OPTIONS[0]);
+    changeSelectedLocation(LOCATION_OPTIONS[0]);
   }, []);
 
   const changeSelectedLocation = async (newLocation: string) => {
     setIsError(false);
     setIsLoading(true);
 
+    const chachedLocation = getStorageLocation(newLocation);
+
+    if (chachedLocation) {
+      const loc = JSON.parse(chachedLocation);
+      setIsLoading(false);
+      setLocation(loc);
+      return;
+    }
     try {
       const loc = await getWeatherByCityName(newLocation);
 
@@ -29,6 +35,8 @@ const useWeather = () => {
         setIsError(!loc);
         return;
       }
+
+      setStorageLocationWithExpiry((loc as LocationWeather).name, JSON.stringify(loc), 1000000);
 
       setLocation(loc as LocationWeather);
     } catch (error) {
