@@ -1,5 +1,3 @@
-import LIGHT_GRAY from '../src/utils/theme';
-
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
