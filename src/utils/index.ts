@@ -1,11 +1,15 @@
 export const getWeatherIcon = (icon: string) => `http://openweathermap.org/img/wn/${icon}@4x.png`;
 
-export const getHourMinuteTimeFormat = (timestamp: number, secondsTimezoneOffset: number) => {
+export const getLocalizedTimeFormat = (timestamp: number, secondsTimezoneOffset: number) => {
   const date = new Date((timestamp + secondsTimezoneOffset) * 1000);
 
-  const time = date.toTimeString();
+  const timeFormat = new Intl.DateTimeFormat(undefined, {
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'UTC'
+  });
 
-  return time.substring(0, 5);
+  return timeFormat.format(date);
 };
 
 export const fromCelsiusToFahrenheit = (celsiusTemp: number) => {

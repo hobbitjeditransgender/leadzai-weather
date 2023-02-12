@@ -8,7 +8,7 @@ import Temperature from '../../components/Temperature';
 import UnitSwitch from '../../components/UnitSwitch';
 import WeatherIcon from '../../components/WeatherIcon';
 import useWeather from '../../hooks/useWeather';
-import { getWeatherIcon, getHourMinuteTimeFormat } from '../../utils';
+import { getWeatherIcon, getLocalizedTimeFormat } from '../../utils';
 import {
   LocationUnitSection,
   LocationUnitWrapper,
@@ -47,9 +47,9 @@ const WeatherAppHome: React.FC = () => {
             <Temperature value={location.main.temp} isFahrenheit={isFahrenheit} />
             <WeatherIcon src={getWeatherIcon(location.weather[0].icon)} />
             <SunSection>
-              <SunTime time={getHourMinuteTimeFormat(location.sys.sunrise, location.timezone)} />
+              <SunTime time={getLocalizedTimeFormat(location.sys.sunrise, location.timezone)} />
               <SunTime
-                time={getHourMinuteTimeFormat(location.sys.sunset, location.timezone)}
+                time={getLocalizedTimeFormat(location.sys.sunset, location.timezone)}
                 isSunrise={false}
               />
             </SunSection>

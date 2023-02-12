@@ -1,5 +1,5 @@
 import {
-  getHourMinuteTimeFormat,
+  getLocalizedTimeFormat,
   fromCelsiusToFahrenheit,
   formatTemperature,
   setStorageLocationWithExpiry,
@@ -11,13 +11,14 @@ const value = 'myValue';
 const ttl = 1000;
 
 describe('utility functions', () => {
-  describe('getHourMinuteTimeFormat', () => {
-    it('should return the correct time format', () => {
-      const timestamp = 1613734400;
-      const secondsTimezoneOffset = 25200;
-      const expectedTime = '18:33';
+  describe('getLocalizedTimeFormat', () => {
+    it('should format the time correctly', () => {
+      const timestamp = 1676191181;
+      const secondsTimezoneOffset = -10800;
 
-      expect(getHourMinuteTimeFormat(timestamp, secondsTimezoneOffset)).toBe(expectedTime);
+      const formattedTime = getLocalizedTimeFormat(timestamp, secondsTimezoneOffset);
+
+      expect(formattedTime).toBe('5:39 AM');
     });
   });
 
