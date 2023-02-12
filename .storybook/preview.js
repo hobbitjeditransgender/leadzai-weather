@@ -7,11 +7,5 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/
     }
-  },
-  parameters: {
-    backgrounds: {
-      default: 'twitter',
-      values: [{ name: 'twitter', value: LIGHT_GRAY }]
-    }
   }
 };
